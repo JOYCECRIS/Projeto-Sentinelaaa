@@ -2,95 +2,119 @@
 <html lang="pt-BR">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Atendimento - Hospital VidaNova</title>
-
-    <link rel="stylesheet" href="style.css">
+    <title>Login | Hospital VidaNova</title>
 
     <style>
+
+        * {
+            box-sizing: border-box;
+        }
 
         body {
             margin: 0;
             font-family: Arial, Helvetica, sans-serif;
-            background: #f4f8fb;
+            background: linear-gradient(135deg, #dff6ff, #b9e8f8);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        .container {
+        .login-container {
             width: 90%;
-            max-width: 700px;
-            margin: 50px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.12);
+            max-width: 420px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 12px 35px rgba(70, 150, 180, 0.20);
+            text-align: center;
         }
 
-        h2 {
-            color: #00897b;
-            margin-bottom: 25px;
+        .hospital-icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 15px;
+            background: #b9e8f8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 38px;
         }
 
-        input,
-        select {
+        h1 {
+            margin: 5px 0;
+            color: #168aad;
+            font-size: 28px;
+        }
+
+        .subtitulo {
+            color: #718096;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .campo {
+            text-align: left;
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #3d5666;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        input {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ccc;
-            border-radius: 7px;
+            padding: 14px;
+            border: 1px solid #c7e7f2;
+            border-radius: 10px;
             font-size: 16px;
-            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+            background: #f8fdff;
+        }
+
+        input:focus {
+            border-color: #76cce5;
+            box-shadow: 0 0 0 3px rgba(118, 204, 229, 0.18);
         }
 
         button {
-            border: none;
-            border-radius: 7px;
-            padding: 12px 18px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .btn-cadastrar {
             width: 100%;
-            background: #00897b;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #72cce5;
             color: white;
-            margin-top: 15px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-top: 5px;
         }
 
-        .btn-cadastrar:hover {
-            background: #00695c;
-        }
-
-        .btn-voltar {
-            background: #6c757d;
-            color: white;
-            margin-top: 10px;
-        }
-
-        .btn-voltar:hover {
-            background: #545b62;
+        button:hover {
+            background: #4db6d4;
+            transform: translateY(-1px);
         }
 
         #mensagem {
-            margin-top: 15px;
-            padding: 12px;
-            border-radius: 6px;
-            display: none;
+            margin-top: 18px;
+            font-size: 14px;
+            color: #d9534f;
         }
 
-        .sucesso {
-            display: block !important;
-            background: #d4edda;
-            color: #155724;
-        }
-
-        .erro {
-            display: block !important;
-            background: #f8d7da;
-            color: #721c24;
+        .rodape {
+            margin-top: 25px;
+            color: #9aaab3;
+            font-size: 12px;
         }
 
     </style>
@@ -99,322 +123,87 @@
 
 <body>
 
-<div class="container">
+    <div class="login-container">
 
-    <h2>
-        🏥 Cadastro de Paciente
-    </h2>
+        <div class="hospital-icon">
+            🏥
+        </div>
 
-    <input
-        id="nome"
-        type="text"
-        placeholder="Nome do paciente"
-    >
+        <h1>Hospital VidaNova</h1>
 
-    <input
-        id="cpf"
-        type="text"
-        placeholder="CPF"
-    >
+        <div class="subtitulo">
+            Sistema de Atendimento Hospitalar
+        </div>
 
-    <select id="tipo">
+        <div class="campo">
 
-        <option value="Convenio">
-            Convênio
-        </option>
+            <label for="usuario">
+                Usuário
+            </label>
 
-        <option value="Particular">
-            Particular
-        </option>
+            <input
+                type="text"
+                id="usuario"
+                placeholder="Digite seu usuário"
+            >
 
-    </select>
+        </div>
 
-    <input
-        id="foto"
-        type="file"
-        accept="image/*"
-    >
+        <div class="campo">
 
-    <button
-        class="btn-cadastrar"
-        type="button"
-        onclick="cadastrar()">
+            <label for="senha">
+                Senha
+            </label>
 
-        Cadastrar Paciente
+            <input
+                type="password"
+                id="senha"
+                placeholder="Digite sua senha"
+            >
 
-    </button>
+        </div>
 
-    <button
-        class="btn-voltar"
-        type="button"
-        onclick="voltarTriagem()">
+        <button onclick="login()">
+            Entrar no sistema
+        </button>
 
-        ← Voltar para Triagem
+        <div id="mensagem"></div>
 
-    </button>
+        <div class="rodape">
+            Sistema Hospitalar • VidaNova
+        </div>
 
-    <div id="mensagem"></div>
-
-</div>
+    </div>
 
 
-<script>
+    <script>
 
-async function cadastrar() {
+        function login() {
 
-    const nome =
-        document
-        .getElementById("nome")
-        .value
-        .trim();
+            const usuario =
+                document.getElementById("usuario").value.trim();
 
-    const cpf =
-        document
-        .getElementById("cpf")
-        .value
-        .trim();
-
-    const tipo =
-        document
-        .getElementById("tipo")
-        .value;
+            const senha =
+                document.getElementById("senha").value.trim();
 
 
-    if (nome === "") {
+            if (
+                usuario === "atendimento" &&
+                senha === "123"
+            ) {
 
-        mostrarMensagem(
-            "Digite o nome do paciente.",
-            "erro"
-        );
+                window.location.href = "atendimento.html";
 
-        return;
+            } else {
 
-    }
-
-
-    if (cpf === "") {
-
-        mostrarMensagem(
-            "Digite o CPF do paciente.",
-            "erro"
-        );
-
-        return;
-
-    }
-
-
-    /*
-     * Recupera pacientes existentes.
-     */
-
-    let pacientes =
-        JSON.parse(
-            localStorage.getItem("pacientes")
-        ) || [];
-
-
-    /*
-     * Verifica se o CPF já existe.
-     */
-
-    const cpfExiste =
-        pacientes.some(
-            function(paciente) {
-
-                return paciente.cpf === cpf;
+                document.getElementById("mensagem").textContent =
+                    "❌ Usuário ou senha incorretos.";
 
             }
-        );
-
-
-    if (cpfExiste) {
-
-        mostrarMensagem(
-            "Já existe um paciente cadastrado com este CPF.",
-            "erro"
-        );
-
-        return;
-
-    }
-
-
-    /*
-     * Cria o paciente.
-     */
-
-    const paciente = {
-
-        id: Date.now(),
-
-        nome: nome,
-
-        cpf: cpf,
-
-        tipo: tipo,
-
-        status: "triagem",
-
-        sintoma: "",
-
-        temperatura: "",
-
-        alergia: "",
-
-        observacao: "",
-
-        risco: ""
-
-    };
-
-
-    /*
-     * Adiciona à lista.
-     */
-
-    pacientes.push(
-        paciente
-    );
-
-
-    /*
-     * Salva no navegador.
-     */
-
-    localStorage.setItem(
-        "pacientes",
-        JSON.stringify(pacientes)
-    );
-
-
-    /*
-     * ENVIA PARA O BACKEND
-     */
-
-    try {
-
-        const resposta = await fetch(
-            "http://localhost:3000/atendimento",
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-
-                    nome: nome,
-
-                    documento: cpf,
-
-                    dataNascimento: "",
-
-                    sexo: "",
-
-                    nomeMae: "",
-
-                    estadoCivil: "",
-
-                    endereco: "",
-
-                    telefone: "",
-
-                    email: "",
-
-                    contatoEmergencia: "",
-
-                    tipo: tipo
-
-                })
-
-            }
-        );
-
-
-        if (!resposta.ok) {
-
-            throw new Error(
-                "Erro ao enviar paciente para o backend."
-            );
 
         }
 
-
-        /*
-         * Limpa formulário.
-         */
-
-        document.getElementById(
-            "nome"
-        ).value = "";
-
-
-        document.getElementById(
-            "cpf"
-        ).value = "";
-
-
-        document.getElementById(
-            "tipo"
-        ).value = "Convenio";
-
-
-        document.getElementById(
-            "foto"
-        ).value = "";
-
-
-        mostrarMensagem(
-            "✅ Paciente cadastrado com sucesso! Ele já está disponível na triagem.",
-            "sucesso"
-        );
-
-
-    } catch (erro) {
-
-        console.error(erro);
-
-        mostrarMensagem(
-            "⚠️ Paciente salvo, mas não foi possível enviar para o backend.",
-            "erro"
-        );
-
-    }
-
-}
-
-
-function mostrarMensagem(
-    texto,
-    tipo
-) {
-
-    const mensagem =
-        document.getElementById(
-            "mensagem"
-        );
-
-
-    mensagem.textContent =
-        texto;
-
-
-    mensagem.className =
-        tipo;
-
-}
-
-
-function voltarTriagem() {
-
-    window.location.href =
-        "triagem.html";
-
-}
-
-</script>
+    </script>
 
 </body>
 
