@@ -63,13 +63,7 @@ app.post("/login", (req, res) => {
   const senha = req.body.senha;
 
 
-  /*
-   * LOGIN FIXO DO ATENDIMENTO
-   *
-   * Usuário: atendimento
-   * Senha: 123
-   */
-
+  // LOGIN DO ATENDIMENTO
   if (
     usuario === "atendimento" &&
     senha === "123"
@@ -86,10 +80,41 @@ app.post("/login", (req, res) => {
   }
 
 
-  /*
-   * LOGIN DOS USUÁRIOS DO BANCO
-   */
+  // LOGIN DA TRIAGEM
+  if (
+    usuario === "triagem" &&
+    senha === "123"
+  ) {
 
+    return res.json({
+
+      usuario: "triagem",
+
+      tipo: "triagem"
+
+    });
+
+  }
+
+
+  // LOGIN DO MÉDICO
+  if (
+    usuario === "medico" &&
+    senha === "123"
+  ) {
+
+    return res.json({
+
+      usuario: "medico",
+
+      tipo: "medico"
+
+    });
+
+  }
+
+
+  // LOGIN DOS USUÁRIOS DO BANCO
   const db = readDB();
 
   const user = db.usuarios.find(
