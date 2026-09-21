@@ -469,6 +469,51 @@
 
 
     /* =========================================================
+       BOTÃO INTERNAÇÃO
+    ========================================================= */
+
+    .btn-internacao {
+      width: 100%;
+
+      height: 51px;
+
+      margin-top: 10px;
+
+      border-radius: 13px;
+
+      color: white;
+
+      background:
+        linear-gradient(
+          135deg,
+          #72c4dc,
+          #287c98
+        );
+
+      border: 1px solid #5bb3ce;
+
+      font-size: 13px;
+
+      font-weight: 900;
+
+      box-shadow:
+        0 8px 18px rgba(40,124,152,.16);
+    }
+
+    .btn-internacao:hover {
+      background:
+        linear-gradient(
+          135deg,
+          #63b9d3,
+          #236f89
+        );
+
+      box-shadow:
+        0 12px 24px rgba(40,124,152,.22);
+    }
+
+
+    /* =========================================================
        CONSULTÓRIO
     ========================================================= */
 
@@ -1388,7 +1433,8 @@
       .form-group,
       .allergy-warning,
       .btn-salvar,
-      .btn-alta {
+      .btn-alta,
+      .btn-internacao {
         display: none !important;
       }
 
@@ -1723,6 +1769,17 @@
             onclick="gerarAltaPDF()"
           >
             📄 Alta
+          </button>
+
+
+          <!-- INTERNAÇÃO -->
+
+          <button
+            class="btn-internacao"
+            type="button"
+            onclick="gerarInternacaoPDF()"
+          >
+            🏥 Internar paciente
           </button>
 
 
@@ -2873,6 +2930,518 @@
     }
 
 
+
+    /* =========================================================
+       GERAR INTERNAÇÃO
+    ========================================================= */
+
+    function gerarInternacaoPDF() {
+
+      const paciente =
+        document
+          .getElementById("paciente")
+          .value
+          .trim();
+
+      const diagnostico =
+        document
+          .getElementById("diagnostico")
+          .value
+          .trim();
+
+      const obs =
+        document
+          .getElementById("obs")
+          .value
+          .trim();
+
+      if (!paciente) {
+
+        mostrarToast(
+          "Selecione um paciente antes de realizar a internação.",
+          "warning"
+        );
+
+        return;
+      }
+
+      /*
+       * O motivo usa as informações já registradas
+       * no atendimento, sem inventar diagnóstico.
+       */
+      const motivo =
+        diagnostico ||
+        (pacienteSelecionado &&
+         pacienteSelecionado.sintoma) ||
+        obs ||
+        "Necessidade de acompanhamento hospitalar.";
+
+      const risco =
+        pacienteSelecionado &&
+        pacienteSelecionado.risco
+          ? String(pacienteSelecionado.risco).toLowerCase()
+          : "";
+
+      let sala = "Sala 03";
+
+      if (
+        risco === "alto" ||
+        risco === "urgente"
+      ) {
+
+        sala = "Sala 01";
+
+      } else if (
+        risco === "medio" ||
+        risco === "médio"
+      ) {
+
+        sala = "Sala 02";
+
+      }
+
+      const agora = new Date();
+
+      const data =
+        agora.toLocaleDateString("pt-BR");
+
+      const hora =
+        agora.toLocaleTimeString(
+          "pt-BR",
+          {
+            hour: "2-digit",
+            minute: "2-digit"
+          }
+        );
+
+      const janela =
+        window.open("", "_blank");
+
+      if (!janela) {
+
+        mostrarToast(
+          "Permita pop-ups no navegador para gerar a internação.",
+          "warning"
+        );
+
+        return;
+      }
+
+      janela.document.write(`
+
+        <!DOCTYPE html>
+
+        <html lang="pt-BR">
+
+        <head>
+
+          <meta charset="UTF-8">
+
+          <title>
+            Internação - ${escaparHTML(paciente)}
+          </title>
+
+          <style>
+
+            * {
+              box-sizing: border-box;
+            }
+
+            body {
+              margin: 0;
+              padding: 40px;
+
+              font-family:
+                Arial,
+                sans-serif;
+
+              color: #29434d;
+
+              background: #f3fafc;
+            }
+
+            .documento {
+              max-width: 800px;
+
+              margin: auto;
+
+              background: white;
+
+              border: 1px solid #d9edf2;
+
+              border-radius: 18px;
+
+              padding: 42px;
+
+              box-shadow:
+                0 10px 30px rgba(54,126,149,.08);
+            }
+
+            .cabecalho {
+              display: flex;
+
+              align-items: center;
+
+              gap: 15px;
+
+              padding-bottom: 22px;
+
+              border-bottom: 3px solid #a9ddea;
+            }
+
+            .logo {
+              width: 52px;
+              height: 52px;
+
+              display: flex;
+
+              align-items: center;
+              justify-content: center;
+
+              border-radius: 14px;
+
+              background:
+                linear-gradient(
+                  135deg,
+                  #b7e5f2,
+                  #72c4dc
+                );
+
+              color: white;
+
+              font-size: 25px;
+
+              font-weight: bold;
+            }
+
+            .cabecalho h1 {
+              margin: 0;
+
+              color: #287c98;
+
+              font-size: 24px;
+            }
+
+            .cabecalho p {
+              margin: 5px 0 0;
+
+              color: #8ca0a7;
+
+              font-size: 11px;
+            }
+
+            .titulo {
+              text-align: center;
+
+              margin: 32px 0;
+            }
+
+            .titulo span {
+              display: inline-block;
+
+              padding: 7px 15px;
+
+              border-radius: 20px;
+
+              color: #287c98;
+
+              background: #eaf8fc;
+
+              font-size: 10px;
+
+              font-weight: 800;
+
+              letter-spacing: 1px;
+            }
+
+            .titulo h2 {
+              margin: 12px 0 0;
+
+              color: #29434d;
+
+              font-size: 21px;
+            }
+
+            .status {
+              margin: 20px 0;
+
+              padding: 14px;
+
+              border-radius: 10px;
+
+              color: #287c98;
+
+              background: #eaf8fc;
+
+              border: 1px solid #c9eaf2;
+
+              text-align: center;
+
+              font-weight: 900;
+
+              font-size: 13px;
+            }
+
+            .campo {
+              margin-bottom: 18px;
+            }
+
+            .campo strong {
+              display: block;
+
+              margin-bottom: 7px;
+
+              color: #287c98;
+
+              font-size: 10px;
+
+              text-transform: uppercase;
+
+              letter-spacing: .8px;
+            }
+
+            .campo div {
+              min-height: 42px;
+
+              padding: 12px 14px;
+
+              border-radius: 9px;
+
+              background: #f6fafb;
+
+              border: 1px solid #e0edf0;
+
+              font-size: 13px;
+
+              line-height: 1.5;
+            }
+
+            .assinaturas {
+              display: flex;
+
+              justify-content: space-between;
+
+              gap: 50px;
+
+              margin-top: 75px;
+            }
+
+            .assinatura {
+              width: 45%;
+
+              padding-top: 9px;
+
+              border-top: 1px solid #61757d;
+
+              text-align: center;
+
+              color: #5e747c;
+
+              font-size: 10px;
+            }
+
+            .rodape {
+              margin-top: 55px;
+
+              padding-top: 15px;
+
+              border-top: 1px solid #e1edf0;
+
+              text-align: center;
+
+              color: #8ca0a7;
+
+              font-size: 9px;
+            }
+
+            @media print {
+
+              body {
+                padding: 0;
+
+                background: white;
+              }
+
+              .documento {
+                border: none;
+
+                box-shadow: none;
+
+                max-width: none;
+              }
+
+            }
+
+          </style>
+
+        </head>
+
+        <body>
+
+          <div class="documento">
+
+            <div class="cabecalho">
+
+              <div class="logo">
+                +
+              </div>
+
+              <div>
+
+                <h1>
+                  HOSPITAL OLIVEIRA
+                </h1>
+
+                <p>
+                  Sistema Hospitalar
+                </p>
+
+              </div>
+
+            </div>
+
+            <div class="titulo">
+
+              <span>
+                DOCUMENTO HOSPITALAR
+              </span>
+
+              <h2>
+                INTERNAÇÃO DO PACIENTE
+              </h2>
+
+            </div>
+
+            <div class="status">
+              🏥 PACIENTE INTERNADO
+            </div>
+
+            <div class="campo">
+
+              <strong>
+                Paciente
+              </strong>
+
+              <div>
+                ${escaparHTML(paciente)}
+              </div>
+
+            </div>
+
+            <div class="campo">
+
+              <strong>
+                Data e hora da internação
+              </strong>
+
+              <div>
+                ${data} às ${hora}
+              </div>
+
+            </div>
+
+            <div class="campo">
+
+              <strong>
+                Motivo da internação
+              </strong>
+
+              <div>
+                ${escaparHTML(motivo)}
+              </div>
+
+            </div>
+
+            <div class="campo">
+
+              <strong>
+                Classificação de risco
+              </strong>
+
+              <div>
+                ${escaparHTML(
+                  pacienteSelecionado &&
+                  pacienteSelecionado.risco
+                    ? pacienteSelecionado.risco
+                    : "Não informada"
+                )}
+              </div>
+
+            </div>
+
+            <div class="campo">
+
+              <strong>
+                Sala de internação
+              </strong>
+
+              <div>
+                ${escaparHTML(sala)}
+              </div>
+
+            </div>
+
+            <div class="campo">
+
+              <strong>
+                Observações
+              </strong>
+
+              <div>
+                ${escaparHTML(
+                  obs ||
+                  "Nenhuma observação registrada."
+                )}
+              </div>
+
+            </div>
+
+            <div class="assinaturas">
+
+              <div class="assinatura">
+                Médico responsável
+              </div>
+
+              <div class="assinatura">
+                Paciente / responsável
+              </div>
+
+            </div>
+
+            <div class="rodape">
+
+              Hospital Oliveira • Documento de internação gerado pelo sistema hospitalar
+
+            </div>
+
+          </div>
+
+          <script>
+
+            window.onload = function() {
+
+              window.print();
+
+            };
+
+          <\/script>
+
+        </body>
+
+        </html>
+
+      `);
+
+      janela.document.close();
+
+      mostrarToast(
+        "✓ Internação preparada para impressão/PDF.",
+        "success"
+      );
+
+    }
+
+
     /* =========================================================
        ESCAPAR HTML
     ========================================================= */
@@ -2917,3 +3486,4 @@
 </body>
 
 </html>
+
