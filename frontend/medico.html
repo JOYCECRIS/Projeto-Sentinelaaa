@@ -469,200 +469,6 @@
 
 
     /* =========================================================
-       BOTÃO INTERNAÇÃO
-    ========================================================= */
-
-    .btn-internacao {
-      width: 100%;
-
-      height: 51px;
-
-      margin-top: 10px;
-
-      border-radius: 13px;
-
-      color: white;
-
-      background:
-        linear-gradient(
-          135deg,
-          #72c4dc,
-          #287c98
-        );
-
-      border: 1px solid #5bb3ce;
-
-      font-size: 13px;
-
-      font-weight: 900;
-
-      box-shadow:
-        0 8px 18px rgba(40,124,152,.16);
-    }
-
-    .btn-internacao:hover {
-      background:
-        linear-gradient(
-          135deg,
-          #63b9d3,
-          #236f89
-        );
-
-      box-shadow:
-        0 12px 24px rgba(40,124,152,.22);
-    }
-
-
-    /* =========================================================
-       PAINEL DE RISCO E ALERTAS DE PRIORIDADE
-    ========================================================= */
-
-    .risk-dashboard {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-
-    .risk-card {
-      padding: 18px;
-      border-radius: 16px;
-      background: #fff;
-      border: 1px solid #e1eef2;
-      box-shadow: 0 8px 22px rgba(54,126,149,.07);
-    }
-
-    .risk-card-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-    }
-
-    .risk-card-label {
-      font-size: 11px;
-      font-weight: 800;
-      color: #789099;
-      text-transform: uppercase;
-      letter-spacing: .6px;
-    }
-
-    .risk-card-number {
-      margin-top: 7px;
-      font-size: 27px;
-      font-weight: 900;
-      color: #29434d;
-    }
-
-    .risk-card-icon {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 12px;
-      background: #eaf8fc;
-      font-size: 19px;
-    }
-
-    .priority-panel {
-      margin-bottom: 22px;
-      padding: 18px;
-      border-radius: 16px;
-      background: #fff;
-      border: 1px solid #e1eef2;
-      box-shadow: 0 8px 22px rgba(54,126,149,.07);
-    }
-
-    .priority-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    .priority-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .priority-title strong {
-      color: #29434d;
-      font-size: 14px;
-    }
-
-    .priority-title small {
-      display: block;
-      margin-top: 3px;
-      color: #8ca0a7;
-      font-size: 10px;
-    }
-
-    .priority-list {
-      display: grid;
-      gap: 9px;
-    }
-
-    .priority-alert {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 14px;
-      border-radius: 11px;
-      background: #fff7f7;
-      border: 1px solid #f0d5d5;
-    }
-
-    .priority-alert-info {
-      min-width: 0;
-    }
-
-    .priority-alert-info strong {
-      display: block;
-      color: #3f5158;
-      font-size: 12px;
-    }
-
-    .priority-alert-info span {
-      display: block;
-      margin-top: 3px;
-      color: #8a999f;
-      font-size: 10px;
-    }
-
-    .priority-badge {
-      flex-shrink: 0;
-      padding: 6px 9px;
-      border-radius: 999px;
-      background: #fdeaea;
-      color: #a94c4c;
-      font-size: 9px;
-      font-weight: 900;
-      text-transform: uppercase;
-    }
-
-    .priority-empty {
-      padding: 15px;
-      border-radius: 11px;
-      background: #f5fbfc;
-      border: 1px solid #dceff3;
-      color: #789099;
-      text-align: center;
-      font-size: 11px;
-      font-weight: 700;
-    }
-
-    @media (max-width: 850px) {
-      .risk-dashboard {
-        grid-template-columns: 1fr;
-      }
-    }
-
-
-    /* =========================================================
        CONSULTÓRIO
     ========================================================= */
 
@@ -1094,6 +900,42 @@
     /* =========================================================
        RISCO
     ========================================================= */
+
+    /* CORES DE CLASSIFICAÇÃO DE RISCO */
+    .risco.alto,
+    .risco.urgente {
+      background: #ffe1e1 !important;
+      color: #c62828 !important;
+      border: 1px solid #f2a5a5 !important;
+      font-weight: 900;
+    }
+
+    .risco.medio,
+    .risco.médio {
+      background: #fff0cc !important;
+      color: #b56b00 !important;
+      border: 1px solid #f0c66b !important;
+      font-weight: 900;
+    }
+
+    .risco.baixo {
+      background: #dff5e5 !important;
+      color: #238447 !important;
+      border: 1px solid #9ed8af !important;
+      font-weight: 900;
+    }
+
+    .risco.nao-informado,
+    .risco.não-informado {
+      background: #eef3f5 !important;
+      color: #71828a !important;
+      border: 1px solid #d5e0e4 !important;
+    }
+
+    /* DEIXA O CARTÃO INTEIRO COM UMA BORDA DE PRIORIDADE */
+    .card.risco-alto-card { background: #ffe1e1 !important; border: 2px solid #d32f2f !important; border-left: 8px solid #d32f2f !important; }
+    .card.risco-medio-card { background: #fff0cc !important; border: 2px solid #f0a000 !important; border-left: 8px solid #f0a000 !important; }
+    .card.risco-baixo-card { background: #dff5e5 !important; border: 2px solid #35a45a !important; border-left: 8px solid #35a45a !important; }
 
     .risco {
       display: inline-flex;
@@ -1582,8 +1424,7 @@
       .form-group,
       .allergy-warning,
       .btn-salvar,
-      .btn-alta,
-      .btn-internacao {
+      .btn-alta {
         display: none !important;
       }
 
@@ -1713,130 +1554,6 @@
         >
 
       </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         PAINEL DE RISCO
-    ====================================================== -->
-
-    <div class="risk-dashboard">
-
-      <div class="risk-card">
-
-        <div class="risk-card-top">
-
-          <div>
-            <div class="risk-card-label">
-              Risco alto
-            </div>
-
-            <div
-              class="risk-card-number"
-              id="risco-alto-count"
-            >
-              0
-            </div>
-          </div>
-
-          <div class="risk-card-icon">
-            🚨
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="risk-card">
-
-        <div class="risk-card-top">
-
-          <div>
-            <div class="risk-card-label">
-              Risco médio
-            </div>
-
-            <div
-              class="risk-card-number"
-              id="risco-medio-count"
-            >
-              0
-            </div>
-          </div>
-
-          <div class="risk-card-icon">
-            ⚠️
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="risk-card">
-
-        <div class="risk-card-top">
-
-          <div>
-            <div class="risk-card-label">
-              Risco baixo
-            </div>
-
-            <div
-              class="risk-card-number"
-              id="risco-baixo-count"
-            >
-              0
-            </div>
-          </div>
-
-          <div class="risk-card-icon">
-            ✓
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-
-    <!-- =====================================================
-         ALERTAS DE PRIORIDADE
-    ====================================================== -->
-
-    <section class="priority-panel">
-
-      <div class="priority-header">
-
-        <div class="priority-title">
-
-          <div class="risk-card-icon">
-            🔔
-          </div>
-
-          <div>
-
-            <strong>
-              Alertas de prioridade
-            </strong>
-
-            <small>
-              Pacientes classificados como risco alto
-            </small>
-
-          </div>
-
-        </div>
-
-      </div>
-
-      <div
-        id="priority-alerts"
-        class="priority-list"
-      ></div>
 
     </section>
 
@@ -2045,17 +1762,6 @@
           </button>
 
 
-          <!-- INTERNAÇÃO -->
-
-          <button
-            class="btn-internacao"
-            type="button"
-            onclick="gerarInternacaoPDF()"
-          >
-            🏥 Internar paciente
-          </button>
-
-
         </div>
 
       </section>
@@ -2137,138 +1843,6 @@
        CARREGAR TRIAGENS
     ========================================================= */
 
-    /* =========================================================
-       PAINEL DE RISCO E ALERTAS
-    ========================================================= */
-
-    function atualizarPainelRisco(data) {
-
-      const lista = Array.isArray(data) ? data : [];
-
-      let alto = 0;
-      let medio = 0;
-      let baixo = 0;
-
-      const prioridade = [];
-
-      lista.forEach((paciente) => {
-
-        const risco =
-          String(
-            paciente.risco || ""
-          )
-          .trim()
-          .toLowerCase();
-
-        if (
-          risco === "alto" ||
-          risco === "urgente"
-        ) {
-
-          alto++;
-
-          prioridade.push(paciente);
-
-        } else if (
-          risco === "medio" ||
-          risco === "médio"
-        ) {
-
-          medio++;
-
-        } else if (
-          risco === "baixo"
-        ) {
-
-          baixo++;
-
-        }
-
-      });
-
-      const altoEl =
-        document.getElementById(
-          "risco-alto-count"
-        );
-
-      const medioEl =
-        document.getElementById(
-          "risco-medio-count"
-        );
-
-      const baixoEl =
-        document.getElementById(
-          "risco-baixo-count"
-        );
-
-      if (altoEl) altoEl.textContent = alto;
-      if (medioEl) medioEl.textContent = medio;
-      if (baixoEl) baixoEl.textContent = baixo;
-
-      const alertas =
-        document.getElementById(
-          "priority-alerts"
-        );
-
-      if (!alertas) return;
-
-      if (prioridade.length === 0) {
-
-        alertas.innerHTML = `
-
-          <div class="priority-empty">
-            ✓ Nenhum paciente de risco alto aguardando atendimento.
-          </div>
-
-        `;
-
-        return;
-      }
-
-      alertas.innerHTML =
-        prioridade.map((paciente) => {
-
-          const nome =
-            escapar(
-              paciente.nome ||
-              "Paciente não identificado"
-            );
-
-          const sintoma =
-            escapar(
-              paciente.sintoma ||
-              "Sintoma não informado"
-            );
-
-          return `
-
-            <div class="priority-alert">
-
-              <div class="priority-alert-info">
-
-                <strong>
-                  ${nome}
-                </strong>
-
-                <span>
-                  Sintoma: ${sintoma}
-                </span>
-
-              </div>
-
-              <span class="priority-badge">
-                Prioridade
-              </span>
-
-            </div>
-
-          `;
-
-        }).join("");
-
-    }
-
-
     function carregar() {
 
       fetch("/triagens")
@@ -2288,8 +1862,6 @@
         .then(data => {
 
           triagensCarregadas = data;
-
-          atualizarPainelRisco(data);
 
           const div =
             document.getElementById(
@@ -2338,12 +1910,24 @@
 
               const risco =
                 (t.risco || "não informado")
-                  .toLowerCase();
+                  .toLowerCase()
+                  .trim()
+                  .normalize("NFD")
+                  .replace(/[\u0300-\u036f]/g, "")
+                  .replace(/\s+/g, "-");
 
 
               div.innerHTML += `
 
-                <div class="card">
+                <div class="card ${
+                  risco === "alto" || risco === "urgente"
+                    ? "risco-alto-card"
+                    : risco === "medio" || risco === "médio"
+                      ? "risco-medio-card"
+                      : risco === "baixo"
+                        ? "risco-baixo-card"
+                        : ""
+                }">
 
                   <div class="patient-card-header">
 
@@ -3331,518 +2915,6 @@
 
       mostrarToast(
         "✓ Alta preparada para impressão/PDF.",
-        "success"
-      );
-
-    }
-
-
-
-    /* =========================================================
-       GERAR INTERNAÇÃO
-    ========================================================= */
-
-    function gerarInternacaoPDF() {
-
-      const paciente =
-        document
-          .getElementById("paciente")
-          .value
-          .trim();
-
-      const diagnostico =
-        document
-          .getElementById("diagnostico")
-          .value
-          .trim();
-
-      const obs =
-        document
-          .getElementById("obs")
-          .value
-          .trim();
-
-      if (!paciente) {
-
-        mostrarToast(
-          "Selecione um paciente antes de realizar a internação.",
-          "warning"
-        );
-
-        return;
-      }
-
-      /*
-       * O motivo usa as informações já registradas
-       * no atendimento, sem inventar diagnóstico.
-       */
-      const motivo =
-        diagnostico ||
-        (pacienteSelecionado &&
-         pacienteSelecionado.sintoma) ||
-        obs ||
-        "Necessidade de acompanhamento hospitalar.";
-
-      const risco =
-        pacienteSelecionado &&
-        pacienteSelecionado.risco
-          ? String(pacienteSelecionado.risco).toLowerCase()
-          : "";
-
-      let sala = "Sala 03";
-
-      if (
-        risco === "alto" ||
-        risco === "urgente"
-      ) {
-
-        sala = "Sala 01";
-
-      } else if (
-        risco === "medio" ||
-        risco === "médio"
-      ) {
-
-        sala = "Sala 02";
-
-      }
-
-      const agora = new Date();
-
-      const data =
-        agora.toLocaleDateString("pt-BR");
-
-      const hora =
-        agora.toLocaleTimeString(
-          "pt-BR",
-          {
-            hour: "2-digit",
-            minute: "2-digit"
-          }
-        );
-
-      const janela =
-        window.open("", "_blank");
-
-      if (!janela) {
-
-        mostrarToast(
-          "Permita pop-ups no navegador para gerar a internação.",
-          "warning"
-        );
-
-        return;
-      }
-
-      janela.document.write(`
-
-        <!DOCTYPE html>
-
-        <html lang="pt-BR">
-
-        <head>
-
-          <meta charset="UTF-8">
-
-          <title>
-            Internação - ${escaparHTML(paciente)}
-          </title>
-
-          <style>
-
-            * {
-              box-sizing: border-box;
-            }
-
-            body {
-              margin: 0;
-              padding: 40px;
-
-              font-family:
-                Arial,
-                sans-serif;
-
-              color: #29434d;
-
-              background: #f3fafc;
-            }
-
-            .documento {
-              max-width: 800px;
-
-              margin: auto;
-
-              background: white;
-
-              border: 1px solid #d9edf2;
-
-              border-radius: 18px;
-
-              padding: 42px;
-
-              box-shadow:
-                0 10px 30px rgba(54,126,149,.08);
-            }
-
-            .cabecalho {
-              display: flex;
-
-              align-items: center;
-
-              gap: 15px;
-
-              padding-bottom: 22px;
-
-              border-bottom: 3px solid #a9ddea;
-            }
-
-            .logo {
-              width: 52px;
-              height: 52px;
-
-              display: flex;
-
-              align-items: center;
-              justify-content: center;
-
-              border-radius: 14px;
-
-              background:
-                linear-gradient(
-                  135deg,
-                  #b7e5f2,
-                  #72c4dc
-                );
-
-              color: white;
-
-              font-size: 25px;
-
-              font-weight: bold;
-            }
-
-            .cabecalho h1 {
-              margin: 0;
-
-              color: #287c98;
-
-              font-size: 24px;
-            }
-
-            .cabecalho p {
-              margin: 5px 0 0;
-
-              color: #8ca0a7;
-
-              font-size: 11px;
-            }
-
-            .titulo {
-              text-align: center;
-
-              margin: 32px 0;
-            }
-
-            .titulo span {
-              display: inline-block;
-
-              padding: 7px 15px;
-
-              border-radius: 20px;
-
-              color: #287c98;
-
-              background: #eaf8fc;
-
-              font-size: 10px;
-
-              font-weight: 800;
-
-              letter-spacing: 1px;
-            }
-
-            .titulo h2 {
-              margin: 12px 0 0;
-
-              color: #29434d;
-
-              font-size: 21px;
-            }
-
-            .status {
-              margin: 20px 0;
-
-              padding: 14px;
-
-              border-radius: 10px;
-
-              color: #287c98;
-
-              background: #eaf8fc;
-
-              border: 1px solid #c9eaf2;
-
-              text-align: center;
-
-              font-weight: 900;
-
-              font-size: 13px;
-            }
-
-            .campo {
-              margin-bottom: 18px;
-            }
-
-            .campo strong {
-              display: block;
-
-              margin-bottom: 7px;
-
-              color: #287c98;
-
-              font-size: 10px;
-
-              text-transform: uppercase;
-
-              letter-spacing: .8px;
-            }
-
-            .campo div {
-              min-height: 42px;
-
-              padding: 12px 14px;
-
-              border-radius: 9px;
-
-              background: #f6fafb;
-
-              border: 1px solid #e0edf0;
-
-              font-size: 13px;
-
-              line-height: 1.5;
-            }
-
-            .assinaturas {
-              display: flex;
-
-              justify-content: space-between;
-
-              gap: 50px;
-
-              margin-top: 75px;
-            }
-
-            .assinatura {
-              width: 45%;
-
-              padding-top: 9px;
-
-              border-top: 1px solid #61757d;
-
-              text-align: center;
-
-              color: #5e747c;
-
-              font-size: 10px;
-            }
-
-            .rodape {
-              margin-top: 55px;
-
-              padding-top: 15px;
-
-              border-top: 1px solid #e1edf0;
-
-              text-align: center;
-
-              color: #8ca0a7;
-
-              font-size: 9px;
-            }
-
-            @media print {
-
-              body {
-                padding: 0;
-
-                background: white;
-              }
-
-              .documento {
-                border: none;
-
-                box-shadow: none;
-
-                max-width: none;
-              }
-
-            }
-
-          </style>
-
-        </head>
-
-        <body>
-
-          <div class="documento">
-
-            <div class="cabecalho">
-
-              <div class="logo">
-                +
-              </div>
-
-              <div>
-
-                <h1>
-                  HOSPITAL OLIVEIRA
-                </h1>
-
-                <p>
-                  Sistema Hospitalar
-                </p>
-
-              </div>
-
-            </div>
-
-            <div class="titulo">
-
-              <span>
-                DOCUMENTO HOSPITALAR
-              </span>
-
-              <h2>
-                INTERNAÇÃO DO PACIENTE
-              </h2>
-
-            </div>
-
-            <div class="status">
-              🏥 PACIENTE INTERNADO
-            </div>
-
-            <div class="campo">
-
-              <strong>
-                Paciente
-              </strong>
-
-              <div>
-                ${escaparHTML(paciente)}
-              </div>
-
-            </div>
-
-            <div class="campo">
-
-              <strong>
-                Data e hora da internação
-              </strong>
-
-              <div>
-                ${data} às ${hora}
-              </div>
-
-            </div>
-
-            <div class="campo">
-
-              <strong>
-                Motivo da internação
-              </strong>
-
-              <div>
-                ${escaparHTML(motivo)}
-              </div>
-
-            </div>
-
-            <div class="campo">
-
-              <strong>
-                Classificação de risco
-              </strong>
-
-              <div>
-                ${escaparHTML(
-                  pacienteSelecionado &&
-                  pacienteSelecionado.risco
-                    ? pacienteSelecionado.risco
-                    : "Não informada"
-                )}
-              </div>
-
-            </div>
-
-            <div class="campo">
-
-              <strong>
-                Sala de internação
-              </strong>
-
-              <div>
-                ${escaparHTML(sala)}
-              </div>
-
-            </div>
-
-            <div class="campo">
-
-              <strong>
-                Observações
-              </strong>
-
-              <div>
-                ${escaparHTML(
-                  obs ||
-                  "Nenhuma observação registrada."
-                )}
-              </div>
-
-            </div>
-
-            <div class="assinaturas">
-
-              <div class="assinatura">
-                Médico responsável
-              </div>
-
-              <div class="assinatura">
-                Paciente / responsável
-              </div>
-
-            </div>
-
-            <div class="rodape">
-
-              Hospital Oliveira • Documento de internação gerado pelo sistema hospitalar
-
-            </div>
-
-          </div>
-
-          <script>
-
-            window.onload = function() {
-
-              window.print();
-
-            };
-
-          <\/script>
-
-        </body>
-
-        </html>
-
-      `);
-
-      janela.document.close();
-
-      mostrarToast(
-        "✓ Internação preparada para impressão/PDF.",
         "success"
       );
 
