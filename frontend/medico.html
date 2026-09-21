@@ -514,6 +514,155 @@
 
 
     /* =========================================================
+       PAINEL DE RISCO E ALERTAS DE PRIORIDADE
+    ========================================================= */
+
+    .risk-dashboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .risk-card {
+      padding: 18px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid #e1eef2;
+      box-shadow: 0 8px 22px rgba(54,126,149,.07);
+    }
+
+    .risk-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .risk-card-label {
+      font-size: 11px;
+      font-weight: 800;
+      color: #789099;
+      text-transform: uppercase;
+      letter-spacing: .6px;
+    }
+
+    .risk-card-number {
+      margin-top: 7px;
+      font-size: 27px;
+      font-weight: 900;
+      color: #29434d;
+    }
+
+    .risk-card-icon {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: #eaf8fc;
+      font-size: 19px;
+    }
+
+    .priority-panel {
+      margin-bottom: 22px;
+      padding: 18px;
+      border-radius: 16px;
+      background: #fff;
+      border: 1px solid #e1eef2;
+      box-shadow: 0 8px 22px rgba(54,126,149,.07);
+    }
+
+    .priority-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .priority-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .priority-title strong {
+      color: #29434d;
+      font-size: 14px;
+    }
+
+    .priority-title small {
+      display: block;
+      margin-top: 3px;
+      color: #8ca0a7;
+      font-size: 10px;
+    }
+
+    .priority-list {
+      display: grid;
+      gap: 9px;
+    }
+
+    .priority-alert {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 11px;
+      background: #fff7f7;
+      border: 1px solid #f0d5d5;
+    }
+
+    .priority-alert-info {
+      min-width: 0;
+    }
+
+    .priority-alert-info strong {
+      display: block;
+      color: #3f5158;
+      font-size: 12px;
+    }
+
+    .priority-alert-info span {
+      display: block;
+      margin-top: 3px;
+      color: #8a999f;
+      font-size: 10px;
+    }
+
+    .priority-badge {
+      flex-shrink: 0;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #fdeaea;
+      color: #a94c4c;
+      font-size: 9px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .priority-empty {
+      padding: 15px;
+      border-radius: 11px;
+      background: #f5fbfc;
+      border: 1px solid #dceff3;
+      color: #789099;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 850px) {
+      .risk-dashboard {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+    /* =========================================================
        CONSULTÓRIO
     ========================================================= */
 
@@ -1569,6 +1718,130 @@
 
 
     <!-- =====================================================
+         PAINEL DE RISCO
+    ====================================================== -->
+
+    <div class="risk-dashboard">
+
+      <div class="risk-card">
+
+        <div class="risk-card-top">
+
+          <div>
+            <div class="risk-card-label">
+              Risco alto
+            </div>
+
+            <div
+              class="risk-card-number"
+              id="risco-alto-count"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="risk-card-icon">
+            🚨
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="risk-card">
+
+        <div class="risk-card-top">
+
+          <div>
+            <div class="risk-card-label">
+              Risco médio
+            </div>
+
+            <div
+              class="risk-card-number"
+              id="risco-medio-count"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="risk-card-icon">
+            ⚠️
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="risk-card">
+
+        <div class="risk-card-top">
+
+          <div>
+            <div class="risk-card-label">
+              Risco baixo
+            </div>
+
+            <div
+              class="risk-card-number"
+              id="risco-baixo-count"
+            >
+              0
+            </div>
+          </div>
+
+          <div class="risk-card-icon">
+            ✓
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         ALERTAS DE PRIORIDADE
+    ====================================================== -->
+
+    <section class="priority-panel">
+
+      <div class="priority-header">
+
+        <div class="priority-title">
+
+          <div class="risk-card-icon">
+            🔔
+          </div>
+
+          <div>
+
+            <strong>
+              Alertas de prioridade
+            </strong>
+
+            <small>
+              Pacientes classificados como risco alto
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div
+        id="priority-alerts"
+        class="priority-list"
+      ></div>
+
+    </section>
+
+
+    <!-- =====================================================
          DASHBOARD
     ====================================================== -->
 
@@ -1864,6 +2137,138 @@
        CARREGAR TRIAGENS
     ========================================================= */
 
+    /* =========================================================
+       PAINEL DE RISCO E ALERTAS
+    ========================================================= */
+
+    function atualizarPainelRisco(data) {
+
+      const lista = Array.isArray(data) ? data : [];
+
+      let alto = 0;
+      let medio = 0;
+      let baixo = 0;
+
+      const prioridade = [];
+
+      lista.forEach((paciente) => {
+
+        const risco =
+          String(
+            paciente.risco || ""
+          )
+          .trim()
+          .toLowerCase();
+
+        if (
+          risco === "alto" ||
+          risco === "urgente"
+        ) {
+
+          alto++;
+
+          prioridade.push(paciente);
+
+        } else if (
+          risco === "medio" ||
+          risco === "médio"
+        ) {
+
+          medio++;
+
+        } else if (
+          risco === "baixo"
+        ) {
+
+          baixo++;
+
+        }
+
+      });
+
+      const altoEl =
+        document.getElementById(
+          "risco-alto-count"
+        );
+
+      const medioEl =
+        document.getElementById(
+          "risco-medio-count"
+        );
+
+      const baixoEl =
+        document.getElementById(
+          "risco-baixo-count"
+        );
+
+      if (altoEl) altoEl.textContent = alto;
+      if (medioEl) medioEl.textContent = medio;
+      if (baixoEl) baixoEl.textContent = baixo;
+
+      const alertas =
+        document.getElementById(
+          "priority-alerts"
+        );
+
+      if (!alertas) return;
+
+      if (prioridade.length === 0) {
+
+        alertas.innerHTML = `
+
+          <div class="priority-empty">
+            ✓ Nenhum paciente de risco alto aguardando atendimento.
+          </div>
+
+        `;
+
+        return;
+      }
+
+      alertas.innerHTML =
+        prioridade.map((paciente) => {
+
+          const nome =
+            escapar(
+              paciente.nome ||
+              "Paciente não identificado"
+            );
+
+          const sintoma =
+            escapar(
+              paciente.sintoma ||
+              "Sintoma não informado"
+            );
+
+          return `
+
+            <div class="priority-alert">
+
+              <div class="priority-alert-info">
+
+                <strong>
+                  ${nome}
+                </strong>
+
+                <span>
+                  Sintoma: ${sintoma}
+                </span>
+
+              </div>
+
+              <span class="priority-badge">
+                Prioridade
+              </span>
+
+            </div>
+
+          `;
+
+        }).join("");
+
+    }
+
+
     function carregar() {
 
       fetch("/triagens")
@@ -1883,6 +2288,8 @@
         .then(data => {
 
           triagensCarregadas = data;
+
+          atualizarPainelRisco(data);
 
           const div =
             document.getElementById(
