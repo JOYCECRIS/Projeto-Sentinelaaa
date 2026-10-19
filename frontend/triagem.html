@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -13,10 +12,17 @@
   padding: 0;
 }
 
+:root {
+  --azul: #287b98;
+  --azul-claro: #55afce;
+  --ciano: #36e4ff;
+  --texto: #30444b;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: #eef6f8;
-  color: #30444b;
+  color: var(--texto);
   padding: 25px 15px;
 }
 
@@ -43,7 +49,7 @@ header {
 .logo {
   width: 55px;
   height: 55px;
-  background: #55afce;
+  background: var(--azul-claro);
   color: white;
   border-radius: 14px;
   display: grid;
@@ -52,7 +58,7 @@ header {
 }
 
 h1 {
-  color: #287b98;
+  color: var(--azul);
   font-size: 23px;
 }
 
@@ -63,7 +69,7 @@ header p, .subtitulo {
 }
 
 h2 {
-  color: #287b98;
+  color: var(--azul);
   font-size: 19px;
   margin-bottom: 18px;
 }
@@ -85,7 +91,7 @@ input, select, textarea {
   border: 1px solid #ccd9dd;
   border-radius: 9px;
   background: #f8fbfc;
-  color: #30444b;
+  color: var(--texto);
   font: inherit;
 }
 
@@ -103,15 +109,185 @@ button {
   cursor: pointer;
   font-size: 14px;
   font-weight: bold;
+  transition: filter .2s, transform .2s;
 }
 
 button:hover {
   filter: brightness(.97);
 }
 
+button:active {
+  transform: scale(.99);
+}
+
 .btn-ia {
-  background: #287b98;
+  background: var(--azul);
   color: white;
+}
+
+/* SCANNER FUTURISTA */
+
+.scanner {
+  display: none;
+  margin-top: 18px;
+  padding: 20px;
+  border-radius: 15px;
+  color: #dffaff;
+  background:
+    radial-gradient(circle at 50% 0%, #145a79 0, transparent 58%),
+    linear-gradient(145deg, #071c32, #0a3049 55%, #061827);
+  border: 1px solid #2cbbdf;
+  box-shadow: 0 0 0 1px #36e4ff20, 0 0 25px #1cbfe52a;
+  overflow: hidden;
+}
+
+.scanner.ativo {
+  display: block;
+}
+
+.scanner-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.scanner-titulo {
+  color: #9af4ff;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.scanner-status {
+  color: #6feaff;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.scanner-area {
+  position: relative;
+  min-height: 160px;
+  border: 1px solid #1a7899;
+  border-radius: 11px;
+  overflow: hidden;
+  background:
+    linear-gradient(#27c8f015 1px, transparent 1px),
+    linear-gradient(90deg, #27c8f015 1px, transparent 1px),
+    #031523;
+  background-size: 22px 22px;
+  display: grid;
+  place-items: center;
+}
+
+.scanner-area::before,
+.scanner-area::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-color: #55edff;
+  border-style: solid;
+  opacity: .9;
+}
+
+.scanner-area::before {
+  top: 8px;
+  left: 8px;
+  border-width: 2px 0 0 2px;
+}
+
+.scanner-area::after {
+  bottom: 8px;
+  right: 8px;
+  border-width: 0 2px 2px 0;
+}
+
+.scanner-pulso {
+  position: absolute;
+  width: 110px;
+  height: 110px;
+  border: 1px solid #4ce8ff65;
+  border-radius: 50%;
+  box-shadow: 0 0 22px #36e4ff1f, inset 0 0 22px #36e4ff12;
+  animation: pulsoScanner 2s ease-in-out infinite;
+}
+
+.scanner-pulso::before,
+.scanner-pulso::after {
+  content: "";
+  position: absolute;
+  border: 1px solid #4ce8ff45;
+  border-radius: 50%;
+  inset: 12px;
+}
+
+.scanner-pulso::after {
+  inset: 27px;
+}
+
+.scanner-simbolo {
+  z-index: 1;
+  color: #a6f6ff;
+  font-size: 46px;
+  text-shadow: 0 0 18px #36e4ff;
+  animation: brilhoScanner 1.5s ease-in-out infinite alternate;
+}
+
+.linha-scanner {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #36e4ff,
+    #e0ffff,
+    #36e4ff,
+    transparent
+  );
+  box-shadow: 0 0 14px #36e4ff, 0 0 30px #36e4ff;
+  animation: varredura 2.1s linear infinite;
+}
+
+.scanner-legenda {
+  margin-top: 13px;
+  color: #b5eaf4;
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.progresso-fundo {
+  height: 7px;
+  background: #153d50;
+  border-radius: 20px;
+  margin-top: 16px;
+  overflow: hidden;
+}
+
+.progresso-barra {
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #168dbb, #36e4ff, #d9ffff);
+  box-shadow: 0 0 12px #36e4ff;
+  transition: width .15s linear;
+}
+
+.scanner-rodape {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #8bcbd9;
+  font-size: 11px;
+  margin-top: 8px;
 }
 
 .btn-salvar {
@@ -168,6 +344,43 @@ footer {
   padding: 10px;
 }
 
+@keyframes varredura {
+  from {
+    top: 0;
+  }
+  to {
+    top: calc(100% - 3px);
+  }
+}
+
+@keyframes pulsoScanner {
+  0%, 100% {
+    transform: scale(.92);
+    opacity: .55;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes brilhoScanner {
+  from {
+    opacity: .72;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @media (max-width: 500px) {
   header, .painel {
     padding: 18px;
@@ -175,6 +388,14 @@ footer {
 
   h1 {
     font-size: 20px;
+  }
+
+  .scanner {
+    padding: 14px;
+  }
+
+  .scanner-area {
+    min-height: 140px;
   }
 }
 </style>
@@ -193,15 +414,21 @@ footer {
 
   <section class="painel">
     <h2>🩺 Formulário de triagem</h2>
+
     <p class="subtitulo">
       Preencha os dados do paciente para realizar a análise inicial.
     </p>
 
     <form id="formTriagem">
+
       <div class="grupo">
         <label for="nome">Nome do paciente</label>
-        <input id="nome" type="text"
-          placeholder="Digite o nome completo" required>
+        <input
+          id="nome"
+          type="text"
+          placeholder="Digite o nome completo"
+          required
+        >
       </div>
 
       <div class="grupo">
@@ -226,49 +453,200 @@ footer {
 
       <div class="grupo">
         <label for="temp">Temperatura corporal (°C)</label>
-        <input id="temp" type="number" step="0.1"
-          min="25" max="45" placeholder="Ex.: 37.5">
+        <input
+          id="temp"
+          type="number"
+          step="0.1"
+          min="25"
+          max="45"
+          placeholder="Ex.: 37.5"
+        >
       </div>
 
       <div class="grupo">
         <label for="alergia">Alergias conhecidas</label>
-        <input id="alergia" type="text"
-          placeholder="Informe as alergias ou escreva 'Não informado'">
+        <input
+          id="alergia"
+          type="text"
+          placeholder="Informe as alergias ou escreva 'Não informado'"
+        >
       </div>
 
       <div class="grupo">
         <label for="observacao">Outros sintomas e observações</label>
-        <textarea id="observacao"
-          placeholder="Descreva os sintomas, quando começaram e outras informações importantes"></textarea>
+        <textarea
+          id="observacao"
+          placeholder="Descreva os sintomas, quando começaram e outras informações importantes"
+        ></textarea>
       </div>
 
-      <button type="button" class="btn-ia"
-        onclick="analisarRiscos()">
-        ✦ Analisar riscos com IA
+      <button
+        type="button"
+        class="btn-ia"
+        id="btnAnalisar"
+        onclick="analisarRiscos()"
+      >
+        ✦ Iniciar scanner de riscos
       </button>
+
+      <!-- SCANNER ANIMADO -->
+      <section
+        id="scanner"
+        class="scanner"
+        aria-live="polite"
+        aria-label="Scanner visual de análise"
+      >
+        <div class="scanner-topo">
+          <span class="scanner-titulo">
+            Scanner de riscos • Hospital Oliveira
+          </span>
+          <span id="scannerStatus" class="scanner-status">
+            AGUARDANDO
+          </span>
+        </div>
+
+        <div class="scanner-area">
+          <div class="scanner-pulso"></div>
+          <div class="linha-scanner"></div>
+          <div class="scanner-simbolo">✚</div>
+        </div>
+
+        <p id="scannerLegenda" class="scanner-legenda">
+          Aguardando os dados para iniciar a varredura.
+        </p>
+
+        <div
+          class="progresso-fundo"
+          role="progressbar"
+          aria-label="Progresso da varredura"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          id="scannerProgressoFundo"
+        >
+          <div id="scannerProgresso" class="progresso-barra"></div>
+        </div>
+
+        <div class="scanner-rodape">
+          <span id="scannerEtapa">SISTEMA PRONTO</span>
+          <span id="scannerPorcentagem">0%</span>
+        </div>
+      </section>
 
       <div id="resultado" class="resultado" aria-live="polite"></div>
 
       <button type="submit" class="btn-salvar">
         ✓ Salvar triagem
       </button>
+
     </form>
   </section>
 
   <footer>
     Sistema Hospitalar Oliveira • Protótipo de triagem
   </footer>
+
 </div>
 
 <script>
 /*
   IMPORTANTE:
-  Esta é uma análise automática baseada em regras.
-  Não é uma IA médica real e não substitui a avaliação
-  de um profissional de saúde.
+  O scanner é apenas um efeito visual.
+  A análise funciona por regras simples.
+  Não é uma IA médica real e não substitui profissionais de saúde.
 */
 
-function analisarRiscos() {
+let scannerEmExecucao = false;
+
+function iniciarScanner() {
+  return new Promise(resolve => {
+    const scanner = document.getElementById("scanner");
+    const status = document.getElementById("scannerStatus");
+    const legenda = document.getElementById("scannerLegenda");
+    const etapa = document.getElementById("scannerEtapa");
+    const barra = document.getElementById("scannerProgresso");
+    const fundo = document.getElementById("scannerProgressoFundo");
+    const porcentagem = document.getElementById("scannerPorcentagem");
+    const botao = document.getElementById("btnAnalisar");
+
+    scanner.classList.add("ativo");
+    botao.disabled = true;
+    botao.textContent = "⏳ Scanner em execução...";
+    botao.style.opacity = ".75";
+
+    const passos = [
+      {
+        valor: 12,
+        status: "INICIALIZANDO",
+        etapa: "INICIALIZAÇÃO",
+        legenda: "Inicializando o scanner visual..."
+      },
+      {
+        valor: 34,
+        status: "LENDO DADOS",
+        etapa: "LEITURA DOS DADOS",
+        legenda: "Organizando as informações preenchidas..."
+      },
+      {
+        valor: 58,
+        status: "VERIFICANDO SINAIS",
+        etapa: "VERIFICAÇÃO DE ALERTAS",
+        legenda: "Verificando sintomas e temperatura informados..."
+      },
+      {
+        valor: 82,
+        status: "ANALISANDO REGRAS",
+        etapa: "ANÁLISE AUTOMÁTICA",
+        legenda: "Aplicando as regras de classificação do protótipo..."
+      },
+      {
+        valor: 100,
+        status: "VARREDURA CONCLUÍDA",
+        etapa: "PROCESSO FINALIZADO",
+        legenda: "Varredura visual concluída. Exibindo o resultado preliminar..."
+      }
+    ];
+
+    let indice = 0;
+
+    barra.style.width = "0%";
+    porcentagem.textContent = "0%";
+    fundo.setAttribute("aria-valuenow", "0");
+
+    function proximoPasso() {
+      const passo = passos[indice];
+
+      if (!passo) {
+        scannerEmExecucao = false;
+        botao.disabled = false;
+        botao.textContent = "✦ Analisar novamente";
+        botao.style.opacity = "1";
+        resolve();
+        return;
+      }
+
+      status.textContent = passo.status;
+      etapa.textContent = passo.etapa;
+      legenda.textContent = passo.legenda;
+      barra.style.width = passo.valor + "%";
+      porcentagem.textContent = passo.valor + "%";
+
+      fundo.setAttribute(
+        "aria-valuenow",
+        String(passo.valor)
+      );
+
+      indice++;
+      window.setTimeout(proximoPasso, 450);
+    }
+
+    proximoPasso();
+  });
+}
+
+async function analisarRiscos() {
+  if (scannerEmExecucao) return;
+
   const sintoma = document.getElementById("sintoma").value;
   const tempTexto = document.getElementById("temp").value;
   const temperatura = tempTexto === "" ? null : Number(tempTexto);
@@ -278,100 +656,167 @@ function analisarRiscos() {
   const resultado = document.getElementById("resultado");
   const texto = observacao.toLocaleLowerCase("pt-BR");
 
+  if (!sintoma) {
+    alert("Selecione o principal sintoma antes de analisar.");
+    document.getElementById("sintoma").focus();
+    return;
+  }
+
+  if (
+    tempTexto !== "" &&
+    (
+      !Number.isFinite(temperatura) ||
+      temperatura < 25 ||
+      temperatura > 45
+    )
+  ) {
+    alert("Confira a temperatura informada.");
+    document.getElementById("temp").focus();
+    return;
+  }
+
+  scannerEmExecucao = true;
+  resultado.className = "resultado";
+  resultado.innerHTML = "";
+
+  await iniciarScanner();
+
   const riscos = [];
   let nivel = "verde";
 
   const sinaisGraves = [
     {
-      termos: ["dor no peito", "aperto no peito", "dor no peito forte"],
+      termos: [
+        "dor no peito",
+        "aperto no peito",
+        "dor no peito forte"
+      ],
       risco: "Dor no peito: pode exigir avaliação urgente."
     },
     {
-      termos: ["boca torta", "fala enrolada", "fraqueza de um lado",
-        "rosto torto", "perda súbita de força"],
+      termos: [
+        "boca torta",
+        "fala enrolada",
+        "fraqueza de um lado",
+        "rosto torto",
+        "perda súbita de força"
+      ],
       risco: "Possíveis sinais de AVC: emergência médica."
     },
     {
-      termos: ["não consigo respirar", "sem conseguir respirar",
-        "falta de ar intensa", "dificuldade grave para respirar"],
+      termos: [
+        "não consigo respirar",
+        "sem conseguir respirar",
+        "falta de ar intensa",
+        "dificuldade grave para respirar"
+      ],
       risco: "Dificuldade respiratória intensa: emergência médica."
     },
     {
-      termos: ["sangramento intenso", "sangrando muito",
-        "hemorragia", "perda intensa de sangue"],
+      termos: [
+        "sangramento intenso",
+        "sangrando muito",
+        "hemorragia",
+        "perda intensa de sangue"
+      ],
       risco: "Possível sangramento grave: requer atendimento urgente."
     },
     {
-      termos: ["desmaiou", "perdeu a consciência",
-        "inconsciente", "convulsão"],
+      termos: [
+        "desmaiou",
+        "perdeu a consciência",
+        "inconsciente",
+        "convulsão"
+      ],
       risco: "Alteração da consciência ou convulsão: requer avaliação urgente."
     },
     {
-      termos: ["confusão mental súbita", "confuso de repente"],
+      termos: [
+        "confusão mental súbita",
+        "confuso de repente"
+      ],
       risco: "Confusão mental súbita: pode indicar uma emergência."
     }
   ];
 
   const sintomasGraves = [
-    "infarto", "avc", "convulsao", "hemorragia", "falta_ar_grave"
+    "infarto",
+    "avc",
+    "convulsao",
+    "hemorragia",
+    "falta_ar_grave"
   ];
 
   const sintomasModerados = [
-    "febre", "vomito", "diarreia", "falta_ar_moderada"
+    "febre",
+    "vomito",
+    "diarreia",
+    "falta_ar_moderada"
   ];
 
-  if (!sintoma) {
-    alert("Selecione o principal sintoma antes de analisar.");
-    return;
-  }
-
-  // Sinais de alerta informados no campo de observações
+  // Verifica sinais de alerta escritos nas observações.
   sinaisGraves.forEach(item => {
     if (item.termos.some(termo => texto.includes(termo))) {
       riscos.push(item.risco);
     }
   });
 
-  // Classificação inicial pelo sintoma selecionado
+  // Analisa o sintoma selecionado.
   if (sintomasGraves.includes(sintoma)) {
-    riscos.push("O sintoma selecionado está marcado como sinal de alto risco.");
+    riscos.push(
+      "O sintoma selecionado está marcado como sinal de alto risco."
+    );
   } else if (sintomasModerados.includes(sintoma)) {
-    riscos.push("O sintoma selecionado pode precisar de avaliação clínica prioritária.");
+    riscos.push(
+      "O sintoma selecionado pode precisar de avaliação clínica prioritária."
+    );
   }
 
-  // Temperatura
+  // Analisa a temperatura informada.
   if (temperatura !== null && Number.isFinite(temperatura)) {
     if (temperatura >= 39) {
-      riscos.push("Temperatura elevada (39 °C ou mais): precisa de avaliação clínica.");
+      riscos.push(
+        "Temperatura elevada (39 °C ou mais): precisa de avaliação clínica."
+      );
     } else if (temperatura >= 38) {
       riscos.push("Temperatura compatível com febre.");
     } else if (temperatura < 35) {
-      riscos.push("Temperatura abaixo de 35 °C: necessita de avaliação imediata.");
+      riscos.push(
+        "Temperatura abaixo de 35 °C: necessita de avaliação imediata."
+      );
     }
   }
 
-  // Alergias
-  if (alergia && !/^(não|nao)\s*(informado|informada|sei)?$/i.test(alergia)) {
-    riscos.push("Alergia informada: confirmar com a equipe antes de administrar medicamentos.");
+  // Verifica se foi informada alguma alergia.
+  if (
+    alergia &&
+    !/^(não|nao)\s*(informado|informada|sei)?$/i.test(alergia)
+  ) {
+    riscos.push(
+      "Alergia informada: confirmar com a equipe antes de administrar medicamentos."
+    );
   }
 
-  // Informações adicionais
   if (!observacao) {
-    riscos.push("Não foram preenchidas observações adicionais. Pergunte sobre outros sintomas.");
+    riscos.push(
+      "Não foram preenchidas observações adicionais. Pergunte sobre outros sintomas."
+    );
   }
 
-  if (sintoma === "falta_ar_grave" ||
-      sintoma === "infarto" ||
-      sintoma === "avc" ||
-      sintoma === "convulsao" ||
-      sintoma === "hemorragia" ||
-      (temperatura !== null && temperatura >= 39) ||
-      (temperatura !== null && temperatura < 35) ||
-      sinaisGraves.some(item => item.termos.some(termo => texto.includes(termo)))) {
+  // Define a cor da classificação automática.
+  if (
+    sintomasGraves.includes(sintoma) ||
+    (
+      temperatura !== null &&
+      (temperatura >= 39 || temperatura < 35)
+    ) ||
+    sinaisGraves.some(item =>
+      item.termos.some(termo => texto.includes(termo))
+    )
+  ) {
     nivel = "vermelho";
   } else if (
     sintomasModerados.includes(sintoma) ||
-    sintoma === "falta_ar_moderada" ||
     (temperatura !== null && temperatura >= 38)
   ) {
     nivel = "amarelo";
@@ -384,19 +829,31 @@ function analisarRiscos() {
   };
 
   const lista = riscos.length
-    ? "<ul>" + riscos.map(r =>
+    ? "<ul>" +
+      riscos.map(r =>
         "<li>" + escaparHTML(r) + "</li>"
-      ).join("") + "</ul>"
+      ).join("") +
+      "</ul>"
     : "<p>As regras não identificaram alertas específicos nos dados informados. Isso não garante que o paciente esteja sem riscos.</p>";
 
   resultado.className = "resultado " + nivel;
+
   resultado.innerHTML = `
     <h3>${titulos[nivel]}</h3>
-    <p><strong>Paciente:</strong> ${escaparHTML(
-      document.getElementById("nome").value.trim() || "Não informado"
-    )}</p>
-    <p><strong>Possíveis riscos e pontos de atenção:</strong></p>
+
+    <p>
+      <strong>Paciente:</strong>
+      ${escaparHTML(
+        document.getElementById("nome").value.trim() || "Não informado"
+      )}
+    </p>
+
+    <p>
+      <strong>Possíveis riscos e pontos de atenção:</strong>
+    </p>
+
     ${lista}
+
     <p class="aviso">
       Esta análise é automática e limitada aos dados informados.
       Não diagnostica doenças, não prevê todos os riscos e não substitui
@@ -405,7 +862,10 @@ function analisarRiscos() {
     </p>
   `;
 
-  resultado.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  resultado.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest"
+  });
 }
 
 function escaparHTML(valor) {
@@ -418,54 +878,84 @@ function escaparHTML(valor) {
   })[caractere]);
 }
 
-// Salva a triagem no servidor do sistema.
-document.getElementById("formTriagem").addEventListener("submit", async event => {
-  event.preventDefault();
+// SALVA A TRIAGEM NO SERVIDOR
+document.getElementById("formTriagem").addEventListener(
+  "submit",
+  async event => {
+    event.preventDefault();
 
-  const nome = document.getElementById("nome").value.trim();
-  const sintoma = document.getElementById("sintoma").value;
-  const tempTexto = document.getElementById("temp").value;
-  const temperatura = tempTexto === "" ? null : Number(tempTexto);
-  const alergia = document.getElementById("alergia").value.trim();
-  const observacao = document.getElementById("observacao").value.trim();
+    const nome = document.getElementById("nome").value.trim();
+    const sintoma = document.getElementById("sintoma").value;
+    const tempTexto = document.getElementById("temp").value;
+    const temperatura = tempTexto === "" ? null : Number(tempTexto);
+    const alergia = document.getElementById("alergia").value.trim();
+    const observacao = document.getElementById("observacao").value.trim();
 
-  if (!nome || !sintoma) {
-    alert("Preencha o nome e selecione o principal sintoma.");
-    return;
-  }
-
-  let risco = "verde";
-
-  if ([
-    "infarto", "avc", "convulsao", "hemorragia", "falta_ar_grave"
-  ].includes(sintoma) || (temperatura !== null && (temperatura >= 39 || temperatura < 35))) {
-    risco = "vermelho";
-  } else if ([
-    "febre", "vomito", "diarreia", "falta_ar_moderada"
-  ].includes(sintoma) || (temperatura !== null && temperatura >= 38)) {
-    risco = "amarelo";
-  }
-
-  try {
-    const resposta = await fetch("/triagem", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        nome, sintoma, temperatura, alergia, observacao, risco
-      })
-    });
-
-    if (!resposta.ok) {
-      throw new Error("Não foi possível salvar a triagem.");
+    if (!nome || !sintoma) {
+      alert("Preencha o nome e selecione o principal sintoma.");
+      return;
     }
 
-    alert("Triagem salva com sucesso!");
-  } catch (erro) {
-    console.error(erro);
-    alert("Não foi possível salvar. Verifique se o servidor está funcionando.");
+    let risco = "verde";
+
+    if (
+      [
+        "infarto",
+        "avc",
+        "convulsao",
+        "hemorragia",
+        "falta_ar_grave"
+      ].includes(sintoma) ||
+      (
+        temperatura !== null &&
+        (temperatura >= 39 || temperatura < 35)
+      )
+    ) {
+      risco = "vermelho";
+    } else if (
+      [
+        "febre",
+        "vomito",
+        "diarreia",
+        "falta_ar_moderada"
+      ].includes(sintoma) ||
+      (temperatura !== null && temperatura >= 38)
+    ) {
+      risco = "amarelo";
+    }
+
+    try {
+      const resposta = await fetch("/triagem", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          nome,
+          sintoma,
+          temperatura,
+          alergia,
+          observacao,
+          risco
+        })
+      });
+
+      if (!resposta.ok) {
+        throw new Error("Não foi possível salvar a triagem.");
+      }
+
+      alert("Triagem salva com sucesso!");
+
+    } catch (erro) {
+      console.error(erro);
+
+      alert(
+        "Não foi possível salvar. Verifique se o servidor está funcionando."
+      );
+    }
   }
-});
+);
 </script>
+
 </body>
 </html>
-
